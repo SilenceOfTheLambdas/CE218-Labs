@@ -1,8 +1,8 @@
-package Lab1.game1;
+package game1;
 
-import static Lab1.game1.Constants.DT;
-import static Lab1.game1.Constants.FRAME_HEIGHT;
-import static Lab1.game1.Constants.FRAME_WIDTH;
+import static game1.Constants.DT;
+import static game1.Constants.FRAME_HEIGHT;
+import static game1.Constants.FRAME_WIDTH;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
