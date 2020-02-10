@@ -52,24 +52,19 @@ public final class Vector2D {
 
     //  magnitude (= "length") of this vector
     public double mag() {
-        return (float)Math.sqrt(x * x + y * y);
+        return Math.sqrt(x * x + y * y);
     }
 
     // angle between vector and horizontal axis in radians in range [-PI,PI]
 // can be calculated using Math.atan2
     public double angle() {
-        double angle = Math.atan2(y, x) * Math.toRadians(angle());
-        if (angle < 0) angle += 360;
-        return angle;
+        return Math.atan2(y, x);
     }
 
     // angle between this vector and another vector in range [-PI,PI]
     public double angle(Vector2D other) {
-        double angle = 0;
-        if (other.x > x || other.y > y) angle = Math.atan2(other.x, other.y) / Math.atan2(x, y);
-        if (x > other.x || y > other.y) angle = Math.atan2(x, y) / Math.atan2(other.x, other.y);
-        if (angle < 0) angle += 360;
-        return angle;
+        double cross = x * other.y - y * other.x;
+        return Math.atan2(cross, dot(other));
     }
 
     // add argument vector
@@ -135,9 +130,7 @@ public final class Vector2D {
 
     // distance to argument vector
     public double dist(Vector2D v) {
-        final double x_d = v.x - x;
-        final double y_d = v.y - y;
-        return x_d * x_d + y_d * y_d;
+        return Math.sqrt((x - v.x) * (x - v.x) + (y - v.y) * (y - v.y) );
     }
 
     // normalise vector so that magnitude becomes 1
@@ -151,17 +144,16 @@ public final class Vector2D {
     }
 
     // wrap-around operation, assumes w> 0 and h>0
-// remember to manage negative values of the coordinates
+    // remember to manage negative values of the coordinates
     public Vector2D wrap(double w, double h) {
-
+//        No fucking idea m8
+        return new Vector2D(-h, w);
     }
 
     // construct vector with given polar coordinates
     public static Vector2D polar(double angle, double mag) {
-        Vector2D v = new Vector2D();
-        v.rotate(angle);
-        v.mult(mag);
 
-        return v;
+        return new Vector2D(mag * Math.cos(angle),
+                mag * Math.sin(angle));
     }
 }
