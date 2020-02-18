@@ -12,7 +12,7 @@ public class BasicGame {
     public List<BasicAsteroid> asteroids;
 
     public BasicGame() {
-        asteroids = new ArrayList<BasicAsteroid>();
+        asteroids = new ArrayList<>();
         for (int i = 0; i < N_INITIAL_ASTEROIDS; i++) {
             asteroids.add(BasicAsteroid.makeRandomAsteroid());
         }
