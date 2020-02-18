@@ -8,7 +8,7 @@ import java.util.List;
 import static game1.Constants.DELAY;
 
 public class BasicGame {
-    public static final int N_INITIAL_ASTEROIDS = 5;
+    public static final int N_INITIAL_ASTEROIDS = 20;
     public List<BasicAsteroid> asteroids;
 
     public BasicGame() {

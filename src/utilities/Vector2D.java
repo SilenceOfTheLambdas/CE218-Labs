@@ -147,18 +147,18 @@ public final class Vector2D {
     // remember to manage negative values of the coordinates
     public Vector2D wrap(double w, double h) {
 //        If ships x position of off to the left of the screen
-        if (this.x < 0) return new Vector2D(this.x % w, this.y); // Set the new x position to the far right
+        if (this.x < 0) return new Vector2D((this.x + w) % w, this.y); // Set the new x position to the far right
 //        If ships x position if off to the right of the screen
-        if (this.x > w) return new Vector2D(this.x % -w, this.y); // Set the new y position to the far left
+        if (this.x > w) return new Vector2D((this.x + -w) % -w, this.y); // Set the new y position to the far left
 
 //        If both x, y are negative
-        if (this.x < 0 && this.y < -h) return new Vector2D(this.x % w, this.y % -h);
+        if (this.x < 0 && this.y < h) return new Vector2D((this.x + w) % w, (this.y + -h) % -h);
 //        If ships y position is above the limit of height
-        if (this.y > 0) return new Vector2D(this.x, this.y % -h); // Bring is back down
+        if (this.y > 0) return new Vector2D(this.x, (this.y + -h) % -h); // Bring is back down
 //        If ships y position is below the bottom
-        if (this.y < -h) return new Vector2D(this.x, this.y % h); // Bring it back up
+        if (this.y < h) return new Vector2D(this.x, (this.y + h) % h); // Bring it back up
 
-        return new Vector2D(this.x % -w, this.y % h);
+        return new Vector2D((this.x + -w) % -w, (this.y + h) % h);
     }
 
     // construct vector with given polar coordinates
