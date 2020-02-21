@@ -16,10 +16,8 @@ public class BasicAsteroid {
     private Vector2D velocity = new Vector2D();
 
     public BasicAsteroid(double x, double y, double vx, double vy) {
-        this.position.x = x;
-        this.position.y = y;
-        this.velocity.x = vx;
-        this.velocity.y = vy;
+        this.position.set(x, y);
+        this.velocity.set(vx, vy);
     }
 
 	public static BasicAsteroid makeRandomAsteroid() {
