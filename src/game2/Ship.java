@@ -1,10 +1,11 @@
-package game1;
+package game2;
 
 import utilities.Vector2D;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
-public class BasicShip {
+public class Ship {
     public static final int RADIUS = 8;
 
     // rotation velocity in radians per second
@@ -26,16 +27,16 @@ public class BasicShip {
     public Vector2D direction;
 
     // controller which provides an Action object in each frame
-    private BasicController ctrl;
+    private Controller ctrl;
 
-    public BasicShip(BasicController ctrl) {
+    public Ship(Controller ctrl) {
         this.ctrl = ctrl;
         position = new Vector2D(320, 320);
         velocity = new Vector2D(0, 0).mult(10);
         direction = new Vector2D(320, 320);
     }
 
-    public BasicShip() {
+    public Ship() {
         position = new Vector2D().set(Constants.FRAME_HEIGHT/2, Constants.FRAME_WIDTH/2);
         velocity = new Vector2D().mult(10);
         direction = new Vector2D(0, 0);
@@ -64,8 +65,17 @@ public class BasicShip {
     }
 
     public void draw(Graphics2D g) {
+        AffineTransform at = g.getTransform();
+        g.translate(position.x, position.y);
+        double rot = direction.angle() + Math.PI / 2;
+        g.rotate(rot);
+        g.scale(10, 10);
         g.setColor(COLOR);
-        g.fillOval((int) position.x - RADIUS, (int) position.y - RADIUS, 2 * RADIUS, 2 * RADIUS);
-        g.fillRect((int) position.x - 3, (int) position.y - 15, 6, 10);
+        g.fillPolygon(XP, YP, XP.length);
+        if (thrusting) {
+            g.setColor(Color.red);
+            g.fillPolygon(XPTHRUST, YPTHRUST, XPTHRUST.length);
+        }
+        g.setTransform(at);
     }
 }
