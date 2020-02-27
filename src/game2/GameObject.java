@@ -18,6 +18,7 @@ public abstract class GameObject {
 
     public void hit() {
 //        Do something
+
     }
 
     public void update() {

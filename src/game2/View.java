@@ -19,8 +19,11 @@ public class View extends JComponent {
         // paint the background
         g.setColor(BG_COLOR);
         g.fillRect(0, 0, getWidth(), getHeight());
-        for (GameObject obj : game.objects) {
-            obj.draw(g);
+
+        synchronized (Game.class) {
+            for (GameObject obj : game.objects) {
+                obj.draw(g);
+            }
         }
     }
 

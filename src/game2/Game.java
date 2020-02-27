@@ -4,8 +4,10 @@ import utilities.JEasyFrame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import static game1.Constants.DELAY;
+import static game2.Constants.DELAY;
 
 public class Game {
     public Ship ship;
@@ -36,8 +38,21 @@ public class Game {
     }
 
     public void update() {
+        List<GameObject> alive = new ArrayList<>();
+
         for (GameObject a : objects) {
             a.update();
+            if (!a.dead) {
+                alive.add(a);
+            }
+        }
+        if (ship.bullet != null && !ship.bullet.dead) {
+            alive.add(ship.bullet);
+            ship.bullet = null;
+        }
+        synchronized (Game.class) {
+            objects.clear();
+            objects.addAll(alive);
         }
     }
 }
