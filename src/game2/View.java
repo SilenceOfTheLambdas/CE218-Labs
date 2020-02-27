@@ -19,10 +19,9 @@ public class View extends JComponent {
         // paint the background
         g.setColor(BG_COLOR);
         g.fillRect(0, 0, getWidth(), getHeight());
-        for (Asteroid asteroid : game.asteroids) {
-            asteroid.draw(g);
+        for (GameObject obj : game.objects) {
+            obj.draw(g);
         }
-        game.ship.draw(g);
     }
 
     @Override

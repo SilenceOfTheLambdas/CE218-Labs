@@ -6,16 +6,12 @@ import java.awt.*;
 
 import static game1.Constants.*;
 
-public class Asteroid {
+public class Asteroid extends GameObject {
     public static final int RADIUS = 10;
     public static final double MAX_SPEED = 100;
 
-    private Vector2D position = new Vector2D();
-    private Vector2D velocity = new Vector2D();
-
     public Asteroid(double x, double y, double vx, double vy) {
-        this.position.set(x, y);
-        this.velocity.set(vx, vy);
+        super(new Vector2D(x, y), new Vector2D(vx, vy), RADIUS);
     }
 
 	public static Asteroid makeRandomAsteroid() {
