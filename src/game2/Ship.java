@@ -51,8 +51,8 @@ public class Ship extends GameObject {
         int[] XP = new int[]{0, -1, 0, 1};
         int[] YP = new int[]{-1, 2, 1, 2};
 
-        int[] XPTHRUST = new int[]{-1, 1, 1, -1};
-        int[] YPTHRUST = new int[]{3, 3, 10, 10};
+        int[] XPTHRUST = new int[]{-1, 1, 0, 0};
+        int[] YPTHRUST = new int[]{3, 3, 4, 4};
 
         AffineTransform at = g.getTransform();
         g.translate(position.x, position.y);
