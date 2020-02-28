@@ -4,8 +4,6 @@ import utilities.JEasyFrame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static game2.Constants.DELAY;
 
@@ -30,6 +28,7 @@ public class Game {
         Game game = new Game();
         View view = new View(game);
         new JEasyFrame(view, "Asteroid Game").addKeyListener(game.ctrl);
+        //noinspection InfiniteLoopStatement
         while (true) {
             game.update();
             view.repaint();
@@ -41,18 +40,19 @@ public class Game {
         List<GameObject> alive = new ArrayList<>();
 
         for (GameObject a : objects) {
-            a.update();
             if (!a.dead) {
                 alive.add(a);
             }
         }
         if (ship.bullet != null && !ship.bullet.dead) {
-            alive.add(ship.bullet);
-            ship.bullet = null;
+            alive.add(ship.bullet); // Only add objects that are not dead
+            ship.bullet = null; // Then set ship.bullet to NULL
         }
         synchronized (Game.class) {
             objects.clear();
             objects.addAll(alive);
         }
+
+        for (GameObject a : alive) a.update(); // For all alive objects; update them
     }
 }

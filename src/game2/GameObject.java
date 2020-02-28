@@ -10,6 +10,9 @@ public abstract class GameObject {
     public boolean dead;
     public double radius;
 
+    public int deltaTime; // Used for deltaTime calculations
+    private long _lastTime = System.nanoTime();
+
     public GameObject(Vector2D position, Vector2D velocity, double radius) {
         this.position = position;
         this.velocity = velocity;
@@ -24,6 +27,11 @@ public abstract class GameObject {
     public void update() {
         position.addScaled(velocity, Constants.DT);
         position.wrap(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
+
+//        Obtain the deltaTime
+        long time = System.nanoTime();
+        deltaTime = (int) ((time - _lastTime) / 1000000);
+        _lastTime = time;
     }
 
     public abstract void draw(Graphics2D g2);

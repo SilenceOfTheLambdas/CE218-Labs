@@ -4,8 +4,6 @@ import utilities.Vector2D;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Ship extends GameObject {
     public static final int RADIUS = 3;
@@ -14,7 +12,7 @@ public class Ship extends GameObject {
     public static final double STEER_RATE = 2* Math.PI;
 
     // acceleration when thrust is applied
-    public static final double MAG_ACC = 200;
+    public static final double MAG_ACC = 400;
 
     // constant speed loss factor
     public static final double DRAG = 0.01;
@@ -29,10 +27,13 @@ public class Ship extends GameObject {
     // controller which provides an Action object in each frame
     private Controller ctrl;
 
-    public boolean thrusting;
-
-//    The bullet object
+    //    The bullet object
     Bullet bullet = null;
+
+    //    The fire-rate
+    double fireDelay = 700; // 700 = 0.7 seconds
+
+    private static int time = 0;
 
     public Ship(Controller ctrl) {
         super(new Vector2D(320, 320), new Vector2D(0, 0), RADIUS);
@@ -42,9 +43,11 @@ public class Ship extends GameObject {
 
     public void update() {
         ctrl.action();
-        if (ctrl.action().shoot) {
+        time -= deltaTime;
+        if (ctrl.action().shoot && time <= 0) {
             mkBullet();
             ctrl.action().shoot = false;
+            time += (int) fireDelay;
         }
 
         direction.rotate(STEER_RATE * ctrl.action().turn * Constants.DT);
@@ -54,7 +57,7 @@ public class Ship extends GameObject {
     }
 
     private void mkBullet() {
-        bullet = new Bullet(new Vector2D(position).add(0, 3), new Vector2D(velocity));
+        bullet = new Bullet(new Vector2D(position).add(2, 2), new Vector2D(velocity));
         bullet.velocity.addScaled(direction, bullet.MUZZLE_VELOCITY);
         bullet.velocity.mult((1 - DRAG) * Constants.DT);
         super.update();

@@ -4,7 +4,7 @@ import utilities.Vector2D;
 
 import java.awt.*;
 
-import static game1.Constants.*;
+import static game2.Constants.*;
 
 public class Asteroid extends GameObject {
     public static final int RADIUS = 10;
