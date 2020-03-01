@@ -21,7 +21,24 @@ public abstract class GameObject {
 
     public void hit() {
 //        Do something
+        System.out.println("Something got hit" + " | " + this.getClass());
+        this.dead = true;
+    }
 
+    public boolean overlap(GameObject other) {
+//        TODO: Simple collision system using bounding circles
+        final double a = this.radius + other.radius; // get the sum radii of both GameObjects
+        final double dx = this.position.x - other.position.x; // get the difference
+        final double dy = this.position.y - other.position.y;
+
+        return a * a > (dx * dx + dy * dy);
+    }
+
+    public void collisionHandling(GameObject other) {
+        if (this.getClass() != other.getClass() && this.overlap(other)) {
+            this.hit();
+            other.hit();
+        }
     }
 
     public void update() {

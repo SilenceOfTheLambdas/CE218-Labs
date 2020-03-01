@@ -12,6 +12,7 @@ public class Game {
     public Keys ctrl;
     public static final int N_INITIAL_ASTEROIDS = 20;
     public List<GameObject> objects;
+    public List<GameObject> alive;
 
     public Game() {
         objects = new ArrayList<>();
@@ -37,22 +38,28 @@ public class Game {
     }
 
     public void update() {
-        List<GameObject> alive = new ArrayList<>();
-
+        alive = new ArrayList<>();
         for (GameObject a : objects) {
             if (!a.dead) {
                 alive.add(a);
             }
         }
+
         if (ship.bullet != null && !ship.bullet.dead) {
             alive.add(ship.bullet); // Only add objects that are not dead
             ship.bullet = null; // Then set ship.bullet to NULL
         }
+
         synchronized (Game.class) {
             objects.clear();
             objects.addAll(alive);
         }
-
+        for (int i = 0; i < alive.size(); i++) {
+            GameObject g = alive.get(i);
+            for (int j = i + 1; j < alive.size(); j++) {
+                g.collisionHandling(alive.get(j));
+            }
+        }
         for (GameObject a : alive) a.update(); // For all alive objects; update them
     }
 }

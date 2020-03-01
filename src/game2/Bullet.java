@@ -9,7 +9,7 @@ import java.util.TimerTask;
 public class Bullet extends GameObject {
 
     public final double MUZZLE_VELOCITY = 30; // 30 seems like a nice value
-    private final static int RADIUS = 10;
+    private final static int RADIUS = 5;
 
     public Vector2D direction;
 
@@ -31,7 +31,6 @@ public class Bullet extends GameObject {
                 Bullet.super.dead = true;
             }
         }, 2000);
-        super.hit();
     }
 
     @Override

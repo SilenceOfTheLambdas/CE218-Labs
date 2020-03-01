@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 public class Ship extends GameObject {
-    public static final int RADIUS = 3;
+    public static final int RADIUS = 6;
 
     // rotation velocity in radians per second
     public static final double STEER_RATE = 2* Math.PI;
@@ -42,7 +42,6 @@ public class Ship extends GameObject {
     }
 
     public void update() {
-        ctrl.action();
         time -= deltaTime;
         if (ctrl.action().shoot && time <= 0) {
             mkBullet();
@@ -57,7 +56,8 @@ public class Ship extends GameObject {
     }
 
     private void mkBullet() {
-        bullet = new Bullet(new Vector2D(position).add(2, 2), new Vector2D(velocity));
+//        FIXME bullets are spawning in odd locations
+        bullet = new Bullet(new Vector2D(position).add(8, 8), new Vector2D(velocity));
         bullet.velocity.addScaled(direction, bullet.MUZZLE_VELOCITY);
         bullet.velocity.mult((1 - DRAG) * Constants.DT);
         super.update();

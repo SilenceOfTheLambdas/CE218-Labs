@@ -36,7 +36,6 @@ public class Keys extends KeyAdapter implements Controller {
     }
 
     public void keyReleased(KeyEvent e) {
-        // please add appropriate event handling code
         int key = e.getKeyCode();
         switch (key) {
             case KeyEvent.VK_UP:
