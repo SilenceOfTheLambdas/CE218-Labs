@@ -26,7 +26,6 @@ public abstract class GameObject {
     }
 
     public boolean overlap(GameObject other) {
-//        TODO: Simple collision system using bounding circles
         final double a = this.radius + other.radius; // get the sum radii of both GameObjects
         final double dx = this.position.x - other.position.x; // get the difference
         final double dy = this.position.y - other.position.y;

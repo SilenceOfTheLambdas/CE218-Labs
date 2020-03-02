@@ -10,7 +10,7 @@ import static game2.Constants.DELAY;
 public class Game {
     public Ship ship;
     public Keys ctrl;
-    public static final int N_INITIAL_ASTEROIDS = 20;
+    public static final int N_INITIAL_ASTEROIDS = 6;
     public List<GameObject> objects;
     public List<GameObject> alive;
 

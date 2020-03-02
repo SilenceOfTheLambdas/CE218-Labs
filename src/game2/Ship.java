@@ -36,8 +36,8 @@ public class Ship extends GameObject {
     private static int time = 0;
 
     public Ship(Controller ctrl) {
-        super(new Vector2D(320, 320), new Vector2D(0, 0), RADIUS);
-        direction = new Vector2D(position);
+        super(new Vector2D(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2), new Vector2D(0, 0), RADIUS);
+        direction = new Vector2D(position).rotate(-90);
         this.ctrl = ctrl;
     }
 
@@ -56,8 +56,8 @@ public class Ship extends GameObject {
     }
 
     private void mkBullet() {
-//        FIXME bullets are spawning in odd locations
-        bullet = new Bullet(new Vector2D(position).add(8, 8), new Vector2D(velocity));
+//        FIXME: bullets are spawning in odd locations
+        bullet = new Bullet(new Vector2D(position).add(0, -13), new Vector2D(velocity));
         bullet.velocity.addScaled(direction, bullet.MUZZLE_VELOCITY);
         bullet.velocity.mult((1 - DRAG) * Constants.DT);
         super.update();
@@ -79,7 +79,7 @@ public class Ship extends GameObject {
         g.setColor(COLOR);
         g.fillPolygon(XP, YP, XP.length);
         if (ctrl.action().thrust > 0) {
-            g.setColor(Color.red);
+            g.setColor(Color.orange); // Colour of the 'jet-stream'
             g.fillPolygon(XPTHRUST, YPTHRUST, XPTHRUST.length);
         }
         g.setTransform(at);

@@ -15,13 +15,13 @@ public class Bullet extends GameObject {
 
     public Bullet(Vector2D pos, Vector2D vel) {
         super(pos, vel, RADIUS);
-        direction = new Vector2D(position).rotate(position.angle());
+        this.direction = new Vector2D(pos).rotate(pos.angle());
     }
 
     @Override
     public void update() {
         super.update();
-        direction.set(position).rotate(position.angle());
+        this.direction.rotate(position.angle());
         //        Timer for bullet
         Timer bulletTimer = new Timer();
         bulletTimer.schedule(new TimerTask() {
