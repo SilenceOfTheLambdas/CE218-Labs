@@ -45,6 +45,11 @@ public class Game {
             }
         }
 
+        if (Asteroid.spawnedAsteroids != null) {
+            alive.addAll(Asteroid.spawnedAsteroids);
+            Asteroid.spawnedAsteroids = null;
+        }
+
         if (ship.bullet != null && !ship.bullet.dead) {
             alive.add(ship.bullet); // Only add objects that are not dead
             ship.bullet = null; // Then set ship.bullet to NULL

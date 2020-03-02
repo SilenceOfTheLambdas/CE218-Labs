@@ -20,8 +20,6 @@ public abstract class GameObject {
     }
 
     public void hit() {
-//        Do something
-        System.out.println("Something got hit" + " | " + this.getClass());
         this.dead = true;
     }
 
