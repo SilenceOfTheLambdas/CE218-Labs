@@ -1,5 +1,7 @@
 package utilities;
 
+import game2.Game;
+
 import javax.swing.*;
 import java.awt.*;
 

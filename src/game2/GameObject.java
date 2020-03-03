@@ -9,6 +9,7 @@ public abstract class GameObject {
     public Vector2D velocity;
     public boolean dead;
     public double radius;
+    public int hitCount = 0;
 
     public int deltaTime; // Used for deltaTime calculations
     private long _lastTime = System.nanoTime();
@@ -20,6 +21,7 @@ public abstract class GameObject {
     }
 
     public void hit() {
+        hitCount += 1;
         this.dead = true;
     }
 
