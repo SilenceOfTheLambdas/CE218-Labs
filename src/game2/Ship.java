@@ -63,6 +63,14 @@ public class Ship extends GameObject {
         super.update();
     }
 
+    @Override
+    public void hit() {
+        if (Game.lives == 1) {
+            super.hit();
+        }
+        Game.lives -= 1;
+    }
+
     public void draw(Graphics2D g) {
 //        Positions for the new ship
         int[] XP = new int[]{0, -1, 0, 1};

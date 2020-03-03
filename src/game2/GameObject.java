@@ -34,7 +34,7 @@ public abstract class GameObject {
     }
 
     public void collisionHandling(GameObject other) {
-        if (this.getClass() != other.getClass() && this.overlap(other)) {
+        if (this.getClass() != other.getClass() && this.overlap(other) && Game.canStart) {
             this.hit();
             other.hit();
         }

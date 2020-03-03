@@ -1,5 +1,7 @@
 package utilities;
 
+import game2.Game;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

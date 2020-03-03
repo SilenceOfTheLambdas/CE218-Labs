@@ -38,8 +38,12 @@ public class Asteroid extends GameObject {
     @Override
     public void hit() {
         super.hit();
-        if (super.hitCount == 1) genMediumAsteroids();
-        if (super.hitCount == 2) genSmallAsteroids();
+        Game.incScore(20);
+        Game.addScore();
+        game.killCount += 1;
+//        FIXME Figure out a way to keep track of when a medium asteroid is made
+//        if (super.hitCount == 1) genMediumAsteroids();
+//        if (super.hitCount == 2) genSmallAsteroids();
     }
 
     public void genMediumAsteroids() {
