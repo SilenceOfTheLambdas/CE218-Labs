@@ -1,6 +1,7 @@
 package game2;
 
 import utilities.SoundManager;
+import utilities.Sprite;
 import utilities.Vector2D;
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,11 +17,16 @@ public class Asteroid extends GameObject {
     boolean hitMed = false;
     boolean hitSmall = false;
 
+    Image im = ASTEROID1;
+    Sprite asteroidSprite;
+
 //    This will store any fragments of an asteroid; after it has been hit
     public static ArrayList<Asteroid> spawnedAsteroids = null;
 
     public Asteroid(double x, double y, double vx, double vy, int rad) {
         super(new Vector2D(x, y), new Vector2D(vx, vy), rad);
+
+        asteroidSprite = new Sprite(im, this.position, new Vector2D(0, 0), RADIUS, RADIUS);
     }
 
     public static void setGame(Game game) {
@@ -74,7 +80,8 @@ public class Asteroid extends GameObject {
     }
 
     public void draw(Graphics2D g) {
-        g.setColor(Color.red);
-        g.fillOval((int) ((int) position.x - super.radius), (int) ((int) position.y - super.radius), (int) (2 * super.radius), (int) (2 * super.radius));
+//        g.setColor(Color.red);
+//        g.fillOval((int) ((int) position.x - super.radius), (int) ((int) position.y - super.radius), (int) (2 * super.radius), (int) (2 * super.radius));
+        asteroidSprite.draw(g);
     }
 }

@@ -1,9 +1,13 @@
 package game2;
 
+import utilities.JEasyFrame;
+import utilities.JEasyFrameFull;
 import utilities.SoundManager;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import static game2.Asteroid.game;
 
 public class Keys extends KeyAdapter implements Controller {
     Action action;
@@ -33,6 +37,9 @@ public class Keys extends KeyAdapter implements Controller {
                 break;
             case KeyEvent.VK_SPACE:
                 action.shoot = true;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                Game.confirmExit();
                 break;
         }
     }

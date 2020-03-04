@@ -1,6 +1,7 @@
 package game2;
 
 import utilities.JEasyFrame;
+import utilities.JEasyFrameFull;
 import utilities.SoundManager;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.LoggingPermission;
 
 import static game2.Constants.DELAY;
 
@@ -29,6 +31,8 @@ public class Game {
     public static int lives = 2; // This is the number of lives the player has
     public int killCount = 0; // The number of asteroids the player has killed
     public static boolean canStart = false; // This will dictate whether the player damage system starts
+
+    static JEasyFrameFull frame;
 
     public Ship ship;
     public Keys ctrl;
@@ -50,7 +54,7 @@ public class Game {
     public static void main(String[] args) throws Exception {
         Game game = new Game();
         View view = new View(game);
-        JEasyFrame frame = new JEasyFrame(view, "Asteroid Game");
+        frame = new JEasyFrameFull(view);
         frame.addKeyListener(game.ctrl);
         LevelHandler levelHandler = new LevelHandler(game);
 
@@ -93,6 +97,13 @@ public class Game {
 
     public static int getGameScore() {
         return gameScore;
+    }
+
+    public static void confirmExit() {
+        int dialogResult = JOptionPane.showConfirmDialog (frame, "Are you sure you want to quit?");
+        if (dialogResult == JOptionPane.YES_OPTION){
+            System.exit(1);
+        }
     }
 
     public static void addScore() {

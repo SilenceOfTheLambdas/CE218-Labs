@@ -1,5 +1,6 @@
 package utilities;
 
+import game2.Constants;
 import game2.Game;
 
 import javax.swing.*;
