@@ -1,5 +1,6 @@
 package game2;
 
+import utilities.SoundManager;
 import utilities.Vector2D;
 
 import java.awt.*;
@@ -49,6 +50,10 @@ public class Ship extends GameObject {
             time += (int) fireDelay;
         }
 
+        if (ctrl.action().thrust == 0) {
+            SoundManager.stopThrust();
+        }
+
         direction.rotate(STEER_RATE * ctrl.action().turn * Constants.DT);
         velocity.addScaled(direction, ctrl.action().thrust * MAG_ACC * Constants.DT);
         velocity.mult((1 - DRAG) * Constants.DT);
@@ -61,6 +66,7 @@ public class Ship extends GameObject {
         bullet.velocity.addScaled(direction, bullet.MUZZLE_VELOCITY);
         bullet.velocity.mult((1 - DRAG) * Constants.DT);
         super.update();
+        SoundManager.fire();
     }
 
     @Override

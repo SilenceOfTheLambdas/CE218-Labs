@@ -1,6 +1,7 @@
 package game2;
 
 import utilities.JEasyFrame;
+import utilities.SoundManager;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -24,7 +25,7 @@ public class Game {
      * To obtain an extra life a total of: (N_INITIAL_ASTEROIDS * 10) points is needed
      */
     public static int gameScore;
-    public int level = 1; // The current level
+    public int level; // The current level
     public static int lives = 2; // This is the number of lives the player has
     public int killCount = 0; // The number of asteroids the player has killed
     public static boolean canStart = false; // This will dictate whether the player damage system starts

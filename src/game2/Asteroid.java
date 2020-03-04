@@ -1,5 +1,6 @@
 package game2;
 
+import utilities.SoundManager;
 import utilities.Vector2D;
 import java.awt.*;
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class Asteroid extends GameObject {
 
     @Override
     public void hit() {
+//        Play sound when asteroid is hit
+        SoundManager.play(SoundManager.bangMedium);
+
         super.hit();
         Game.incScore(20);
         Game.addScore();
