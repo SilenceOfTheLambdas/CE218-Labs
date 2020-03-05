@@ -1,17 +1,14 @@
 package game2;
 
-import utilities.JEasyFrame;
 import utilities.JEasyFrameFull;
-import utilities.SoundManager;
+import utilities.View;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.LoggingPermission;
 
 import static game2.Constants.DELAY;
 
@@ -34,8 +31,10 @@ public class Game {
 
     static JEasyFrameFull frame;
 
-    public Ship ship;
+    public PlayerShip playerShip;
     public Keys ctrl;
+    public Saucers saucers;
+
     public static int N_INITIAL_ASTEROIDS = 10;
     public List<GameObject> objects;
     public List<GameObject> alive;
@@ -46,9 +45,11 @@ public class Game {
             objects.add(Asteroid.makeRandomAsteroid());
         }
         ctrl = new Keys();
-        ship = new Ship(ctrl);
-        objects.add(ship);
+        playerShip = new PlayerShip(ctrl);
+        objects.add(playerShip);
         Asteroid.setGame(this);
+        saucers = new Saucers(new RandomActionController());
+        objects.add(saucers);
     }
 
     public static void main(String[] args) throws Exception {
@@ -126,9 +127,9 @@ public class Game {
             Asteroid.spawnedAsteroids = null;
         }
 
-        if (ship.bullet != null && !ship.bullet.dead) {
-            alive.add(ship.bullet); // Only add objects that are not dead
-            ship.bullet = null; // Then set ship.bullet to NULL
+        if (playerShip.bullet != null) {
+            alive.add(playerShip.bullet); // Only add objects that are not dead
+            playerShip.bullet = null; // Then set ship.bullet to NULL
         }
 
         synchronized (Game.class) {

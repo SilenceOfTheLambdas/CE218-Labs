@@ -8,8 +8,8 @@ import java.util.TimerTask;
 
 public class Bullet extends GameObject {
 
-    public final double MUZZLE_VELOCITY = 30; // 30 seems like a nice value
-    private final static int RADIUS = 5;
+    public final double MUZZLE_VELOCITY = 150; // 150 seems like a nice value
+    private final static int RADIUS = 10;
 
     public Vector2D direction;
 
@@ -36,6 +36,6 @@ public class Bullet extends GameObject {
     @Override
     public void draw(Graphics2D g2) {
         g2.setColor(Color.green);
-        g2.fillOval((int) position.x, (int) position.y, RADIUS, RADIUS);
+        g2.fillOval((int) position.x - RADIUS, (int) position.y - RADIUS, RADIUS, RADIUS);
     }
 }
