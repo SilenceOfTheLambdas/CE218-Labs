@@ -28,7 +28,7 @@ public abstract class Ship extends GameObject {
     //    The fire-rate
     double fireDelay = 700; // 700 = 0.7 seconds
 
-    private static int time = 0;
+    static int time = 0;
 
     public Ship(Vector2D position, Vector2D velocity, Vector2D direction, Controller ctrl, double radius) {
         super(position, velocity, radius);
@@ -38,14 +38,9 @@ public abstract class Ship extends GameObject {
 
     public void update() {
         time -= deltaTime;
-        if (ctrl.action().shoot && time <= 0) {
-            mkBullet();
-            ctrl.action().shoot = false;
-            time += (int) fireDelay;
+        if (ctrl.action().thrust == 0) {
+            SoundManager.stopThrust();
         }
-        direction.rotate(STEER_RATE * ctrl.action().turn * Constants.DT);
-        velocity.addScaled(direction, ctrl.action().thrust * MAG_ACC * Constants.DT);
-        velocity.mult(1 - (DRAG * Constants.DT));
         super.update();
     }
 

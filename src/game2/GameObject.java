@@ -43,7 +43,6 @@ public abstract class GameObject {
     public void update() {
         position.addScaled(velocity, Constants.DT);
         position.wrap(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
-
 //        Obtain the deltaTime
         long time = System.nanoTime();
         deltaTime = (int) ((time - _lastTime) / 1000000);

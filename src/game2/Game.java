@@ -21,7 +21,7 @@ public class Game {
      * Medium asteroid = 10 points
      * Small asteroid = 15 points
      *
-     * To obtain an extra life a total of: (N_INITIAL_ASTEROIDS * 10) points is needed
+     * To obtain an extra life a total of: (N_INITIAL_ASTEROIDS) points is needed
      */
     public static int gameScore;
     public int level; // The current level
@@ -33,7 +33,7 @@ public class Game {
 
     public PlayerShip playerShip;
     public Keys ctrl;
-    public Saucers saucers;
+    public Saucers saucer;
 
     public static int N_INITIAL_ASTEROIDS = 10;
     public List<GameObject> objects;
@@ -48,8 +48,8 @@ public class Game {
         playerShip = new PlayerShip(ctrl);
         objects.add(playerShip);
         Asteroid.setGame(this);
-        saucers = new Saucers(new RandomActionController());
-        objects.add(saucers);
+        saucer = new Saucers(new PointNShootController(), playerShip);
+        objects.add(saucer);
     }
 
     public static void main(String[] args) throws Exception {
@@ -102,7 +102,7 @@ public class Game {
 
     public static void confirmExit() {
         int dialogResult = JOptionPane.showConfirmDialog (frame, "Are you sure you want to quit?");
-        if (dialogResult == JOptionPane.YES_OPTION){
+        if (dialogResult == JOptionPane.YES_OPTION) {
             System.exit(1);
         }
     }
@@ -130,6 +130,11 @@ public class Game {
         if (playerShip.bullet != null) {
             alive.add(playerShip.bullet); // Only add objects that are not dead
             playerShip.bullet = null; // Then set ship.bullet to NULL
+        }
+
+        if (saucer.bullet != null) {
+            alive.add(saucer.bullet);
+            saucer.bullet = null;
         }
 
         synchronized (Game.class) {

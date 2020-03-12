@@ -1,6 +1,5 @@
 package game2;
 
-import utilities.SoundManager;
 import utilities.Vector2D;
 
 import java.awt.*;
@@ -13,13 +12,18 @@ public class PlayerShip extends Ship {
 
 
     public PlayerShip(Controller ctrl) {
-        super(new Vector2D(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2), new Vector2D(0, 0), new Vector2D(0, 1), ctrl, RADIUS);
+        super(new Vector2D(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2), new Vector2D(0, 0), new Vector2D(0, -1), ctrl, RADIUS);
     }
 
     public void update() {
         super.update();
-        if (ctrl.action().thrust == 0) {
-            SoundManager.stopThrust();
+        direction.rotate(STEER_RATE * ctrl.action().turn * Constants.DT);
+        velocity.addScaled(direction, ctrl.action().thrust * MAG_ACC * Constants.DT);
+        velocity.mult(1 - (DRAG * Constants.DT));
+        if (ctrl.action().shoot && time <= 0) {
+            mkBullet();
+            ctrl.action().shoot = false;
+            time += (int) fireDelay;
         }
     }
 
