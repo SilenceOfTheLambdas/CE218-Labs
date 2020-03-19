@@ -41,6 +41,11 @@ public abstract class Ship extends GameObject {
         if (ctrl.action().thrust == 0) {
             SoundManager.stopThrust();
         }
+        if (ctrl.action().shoot && time <= 0) {
+            mkBullet();
+            ctrl.action().shoot = false;
+            time += (int) fireDelay;
+        }
         super.update();
     }
 

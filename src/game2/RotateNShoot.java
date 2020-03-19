@@ -1,5 +1,7 @@
 package game2;
 
+import utilities.Action;
+
 public class RotateNShoot implements Controller {
     Action action = new Action();
 

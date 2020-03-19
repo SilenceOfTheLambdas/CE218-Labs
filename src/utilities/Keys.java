@@ -1,13 +1,9 @@
-package game2;
+package utilities;
 
-import utilities.JEasyFrame;
-import utilities.JEasyFrameFull;
-import utilities.SoundManager;
-
+import game2.Controller;
+import game2.Game;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
-import static game2.Asteroid.game;
 
 public class Keys extends KeyAdapter implements Controller {
     Action action;

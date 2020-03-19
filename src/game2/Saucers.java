@@ -18,10 +18,7 @@ public class Saucers extends Ship {
 
     @Override
     public void hit() {
-        if (Game.lives == 1) {
-            super.hit();
-        }
-        Game.lives -= 1;
+        super.hit();
     }
 
     @Override
@@ -30,11 +27,6 @@ public class Saucers extends Ship {
         direction.rotate(STEER_RATE * ctrl.action().turn * Constants.DT);
         velocity.addScaled(direction, ctrl.action().thrust * MAG_ACC * Constants.DT);
         velocity.mult(1 - (DRAG * Constants.DT));
-        if (ctrl.action().shoot && time <= 0) {
-            mkBullet();
-            ctrl.action().shoot = false;
-            time += (int) fireDelay;
-        }
 
         if (inRange()) {
             double angle = position.angle(playerShip.position);

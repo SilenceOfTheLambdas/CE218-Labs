@@ -1,6 +1,7 @@
 package game2;
 
 import utilities.JEasyFrameFull;
+import utilities.Keys;
 import utilities.View;
 
 import javax.swing.*;
