@@ -24,12 +24,13 @@ public class Game {
      *
      * To obtain an extra life a total of: (N_INITIAL_ASTEROIDS) points is needed
      */
-    public static boolean gameOver = false;
-    public static int gameScore;
-    public int level; // The current level
-    public static int lives = 2; // This is the number of lives the player has
-    public int killCount = 0; // The number of asteroids the player has killed
+    public static final int startingDelay = 2000; // How long the game will wait until the player takes damage
     public static boolean canStart = false; // This will dictate whether the player damage system starts
+    public static int gameScore;
+    public static int lives = 2; // This is the number of lives the player has
+
+    public int level; // The current level
+    public int killCount = 0; // The number of asteroids the player has killed
 
     static JEasyFrameFull frame;
 
@@ -80,7 +81,7 @@ public class Game {
 //                If 2 seconds has passed since bullet has been spawned
                 Game.canStart = true;
             }
-        }, 2000);
+        }, startingDelay);
 
         while (true) {
             game.update();

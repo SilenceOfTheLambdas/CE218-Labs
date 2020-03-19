@@ -9,7 +9,8 @@ import java.util.TimerTask;
 public class Bullet extends GameObject {
 
     public final double MUZZLE_VELOCITY = 150; // 150 seems like a nice value
-    private final static int RADIUS = 10;
+    private static final int FIRE_DELAY = 2000;
+    private static final int RADIUS = 10;
 
     public Vector2D direction;
 
@@ -30,7 +31,7 @@ public class Bullet extends GameObject {
 //                If 2 seconds has passed since bullet has been spawned
                 Bullet.super.dead = true;
             }
-        }, 2000);
+        }, FIRE_DELAY);
     }
 
     @Override
