@@ -1,8 +1,8 @@
 package utilities;
 
-import game2.Constants;
-import game2.Game;
-import game2.GameObject;
+import game.Constants;
+import game.Game;
+import game.GameObject;
 
 import javax.swing.*;
 import java.awt.*;

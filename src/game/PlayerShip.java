@@ -1,4 +1,4 @@
-package game2;
+package game;
 
 import utilities.Vector2D;
 
@@ -33,6 +33,7 @@ public class PlayerShip extends Ship {
             super.hit();
         }
         Game.lives -= 1;
+        if (dead) Game.GameOver();
     }
 
     @Override

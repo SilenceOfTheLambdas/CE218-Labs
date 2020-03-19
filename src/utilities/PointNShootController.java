@@ -1,5 +1,6 @@
-package game2;
+package utilities;
 
+import game.Controller;
 import utilities.Action;
 
 public class PointNShootController implements Controller {

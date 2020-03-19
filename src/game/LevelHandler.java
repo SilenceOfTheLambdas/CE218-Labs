@@ -1,6 +1,6 @@
-package game2;
+package game;
 
-import static game2.Game.N_INITIAL_ASTEROIDS;
+import static game.Game.N_INITIAL_ASTEROIDS;
 
 public class LevelHandler {
 
@@ -11,7 +11,7 @@ public class LevelHandler {
     }
 
     public void update() {
-        if (game.killCount == N_INITIAL_ASTEROIDS) {
+        if (game.killCount == game.alive.size() - 2) {
             game.level += 1;
             game.killCount = 0;
 //                if no asteroids exist in the level

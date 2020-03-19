@@ -1,5 +1,9 @@
-package game2;
+package utilities;
 
+import game.Controller;
+import game.Game;
+import game.GameObject;
+import game.PlayerShip;
 import utilities.Action;
 
 public class AimNShoot implements Controller {

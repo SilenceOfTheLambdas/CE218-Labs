@@ -1,4 +1,4 @@
-package game2;
+package game;
 
 import utilities.Vector2D;
 import java.awt.*;
@@ -7,8 +7,6 @@ public class Saucers extends Ship {
 
     Controller ctr;
     PlayerShip playerShip;
-
-    private double shootRange = 500;
 
     public Saucers(Controller ctrl, PlayerShip playerShip) {
         super(new Vector2D(300, 40), new Vector2D(0, 0), new Vector2D(0, 1), ctrl, 8);
@@ -40,10 +38,8 @@ public class Saucers extends Ship {
 
     private boolean inRange() {
         // Is the ship within the saucers range?
-        if (this.position.dist(playerShip.position) <= shootRange) {
-            return true;
-        }
-        return false;
+        double shootRange = 500;
+        return this.position.dist(playerShip.position) <= shootRange;
     }
 
     @Override
@@ -54,6 +50,6 @@ public class Saucers extends Ship {
     @Override
     public void draw(Graphics2D g2) {
         g2.fillOval((int)position.x, (int) position.y, (int) radius, (int) radius);
-        g2.drawOval((int) position.x, (int) position.y, (int) shootRange, (int) shootRange);
+//        g2.drawOval((int) position.x, (int) position.y, (int) shootRange, (int) shootRange);
     }
 }

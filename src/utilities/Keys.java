@@ -1,7 +1,7 @@
 package utilities;
 
-import game2.Controller;
-import game2.Game;
+import game.Controller;
+import game.Game;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

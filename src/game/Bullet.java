@@ -1,4 +1,4 @@
-package game2;
+package game;
 
 import utilities.Vector2D;
 
